@@ -1,3 +1,5 @@
+# Project Proposal
+
 ## Leading Question 
 
 By utilizing the OpenFlights dataset, which has access to flight routes and airports dated from 2014, we hope to analyze common flight routes and the evolution of these routes in the past eight years. More specifically, our main objective is to use the information from the dataset to compute the distance and find the shortest path between two cities. To accomplish this, we will produce a general search tool using depth-first search and Dijkstra's algorithm, where one can input their departure and arrival location. The program will then return a highlighted route with the best possible path between the two nodes (airports) along with the total distance (weighted edge). 
