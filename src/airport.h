@@ -1,4 +1,5 @@
 # pragma once
+
 # include <vector>
 # include <string>
 # include <iostream>
@@ -24,4 +25,4 @@ class Airport {
         std::string country_;
         double latitude_;
         double longitude_;
-}
+};
