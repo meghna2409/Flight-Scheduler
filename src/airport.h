@@ -6,10 +6,12 @@
 # include <fstream>
 # include <sstream>
 
+using namespace std;
 class Airport {
     public:
         Airport();
         Airport(int id, std::string name, std::string city, std::string country, double latitude, double longitude);
+        Airport(std::string airport);
 
         int getID();
         std::string getName();

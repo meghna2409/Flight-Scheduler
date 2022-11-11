@@ -2,7 +2,7 @@
 
 # include "airport.h"
 # include <unordered_map>
-# include <sstream>
+# include <unordered_set>
 
 using namespace std;
 class Graph {
@@ -14,5 +14,5 @@ class Graph {
         void addEdges(std::string & routes);
     private:
         std::unordered_map< int, Airport > vertices;
-        std::unordered_map< int, unordered_map<int, Airport> > adjacency_list;
+        std::unordered_map< int, unordered_set<int> > graph;
 };

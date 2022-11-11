@@ -15,19 +15,9 @@ void Graph::addVertices(std::string & airports) {
     if (file.is_open()) {
         std::string current;
         while (getline(file, current)) {
-            vector<string> result;
-            stringstream s_stream(current);
-            while(s_stream.good()) {
-                string substr;
-                getline(s_stream, substr, ','); //get first string delimited by comma
-                result.push_back(substr);
-            }
-            if (result.size == 13 && result[0] != -1) {
-                // change constructor
-                Airport airport(result[0], result[1], result[2],);
-                addVertex(airport.getID(), airport);
-            }
-            // what does this do here?
+            Airport airport(current);
+            addVertex(airport.getID(), airport);
+            // what does this do? - Anna
             /*
             for (unsigned i = 0; i < current.size(); i++) {
                 char current_char = current[i];
@@ -47,5 +37,30 @@ void Graph::addVertices(std::string & airports) {
 }
 
 void Graph::addEdges(std::string & routes) {
-    
+    std::fstream file;
+    file.open(routes, std::ios::in);
+    if (file.is_open()) {
+        std::string current;
+        while (getline(file, current)) {
+            vector<string> result;
+            stringstream s_stream(current);
+            while(s_stream.good()) {
+                string substr;
+                getline(s_stream, substr, ','); // get first string delimited by comma
+                result.push_back(substr);
+            }
+            // What should we do if the id is invalid? Right now, it's just not getting
+            // put into the graph.
+            try {
+                int sourceAirportID = std::stoi(result[3]);
+                int destAirportID = std::stoi(result[5]);
+                // Put in directed graph. Source -> Destination
+                // Check if invalid?
+                unordered_map< int, unordered_set<int> >::iterator it = graph.find(sourceAirportID);
+                graph[sourceAirportID].insert(destAirportID);
+            } catch (...) {
+                cout << "invalid id" << endl;
+            }
+        }
+    }
 }
