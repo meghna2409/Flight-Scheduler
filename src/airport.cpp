@@ -1,4 +1,4 @@
-# include "Airport.h"
+# include "airport.h"
 
 // Default constructor
 Airport::Airport() {
@@ -20,6 +20,27 @@ Airport::Airport(int id, std::string name, std::string city, std::string country
     longitude_ = longitude;
 }
 
+Airport::Airport(std::string airport) {
+    vector<string> result;
+    stringstream s_stream(airport);
+    while(s_stream.good()) {
+        string substr;
+        getline(s_stream, substr, ','); //get first string delimited by comma
+        result.push_back(substr);
+    }
+    if (result.size == 6 && result[0] != -1) {
+        // change constructor
+        Airport airport(result[0], result[1], result[2],);
+        addVertex(airport.getID(), airport);
+    }
+    id_ = id;
+    name_ = name;
+    city_ = city;
+    country_ = country;
+    latitude_ = latitude;
+    longitude_ = longitude;
+}
+
 int Airport::getID() {
     return id_;
 }
@@ -28,18 +49,18 @@ std::string Airport::getName() {
     return name_;
 }
 
-std::string getCity() {
+std::string Airport::getCity() {
     return city_;
 }   
 
-std::string getCountry() {
+std::string Airport::getCountry() {
     return country_;
 }
 
-double getLatitude() {
+double Airport::getLatitude() {
     return latitude_;
 }
 
-double getLongitude() {
+double Airport::getLongitude() {
     return longitude_;
 }
