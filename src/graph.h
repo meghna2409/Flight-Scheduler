@@ -45,6 +45,13 @@ class Graph {
          */
         void addEdges(std::string & routes);
 
+        /**
+         * Gets the vertices of the graph. Used only for test purposes.
+         * 
+         * @return vertices of the graph.
+         */
+        std::unordered_map< int, Airport > getVertices();
+
     private:
         std::unordered_map< int, Airport > vertices;                /*< Vertices of the graph */
         std::unordered_map< int, unordered_set<int> > graph;        /*< Adjacency list of the graph */
