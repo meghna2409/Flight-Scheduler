@@ -1,5 +1,7 @@
 # include "airport.h"
 
+# include <sstream>
+
 // Default constructor
 Airport::Airport() {
     id_ = 0;
@@ -25,20 +27,22 @@ Airport::Airport(std::string airport) {
     stringstream s_stream(airport);
     while(s_stream.good()) {
         string substr;
-        getline(s_stream, substr, ','); //get first string delimited by comma
+        getline(s_stream, substr, ','); // get first string delimited by comma
         result.push_back(substr);
     }
-    if (result.size == 6 && result[0] != -1) {
-        // change constructor
-        Airport airport(result[0], result[1], result[2],);
-        addVertex(airport.getID(), airport);
+    // add checks to make sure airport is valid?
+    id_ = std::stoi(result[0]);
+    name_ = result[1];
+    city_ = result[2];
+    country_ = result[3];
+    // What should we do when lat/long is invalid?
+    // How will we be able to calculate the distance?
+    try {
+        latitude_ = std::stoi(result[6]);
+        longitude_ = std::stoi(result[7]);
+    } catch(...) {
+        cout << "invalid latitude or longitude" << endl;
     }
-    id_ = id;
-    name_ = name;
-    city_ = city;
-    country_ = country;
-    latitude_ = latitude;
-    longitude_ = longitude;
 }
 
 int Airport::getID() {
