@@ -31,7 +31,7 @@ class Airport {
 
         /**
          * Constructs an airport from a string that contains the basic
-         * information of the airports.
+         * information of the airport.
          * 
          * @param airport the string to read from.
          */

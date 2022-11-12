@@ -50,3 +50,7 @@ void Graph::addEdges(std::string & routes) {
         }
     }
 }
+
+std::unordered_map< int, Airport > Graph::getVertices() {
+    return vertices;
+}
