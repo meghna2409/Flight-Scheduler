@@ -17,20 +17,6 @@ void Graph::addVertices(std::string & airports) {
         while (getline(file, current)) {
             Airport airport(current);
             addVertex(airport.getID(), airport);
-            // what does this do? - Anna
-            /*
-            for (unsigned i = 0; i < current.size(); i++) {
-                char current_char = current[i];
-                if (current_char == ',') {
-                    num++;
-                }
-            }
-            if (num == 13) {
-                // change constructor
-                Airport airport;
-                addVertex(airport.getID(), airport);
-            }
-            */
         }
         file.close();
     }
