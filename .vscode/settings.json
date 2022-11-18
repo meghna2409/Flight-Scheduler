@@ -66,5 +66,6 @@
         "unordered_set": "cpp",
         "utility": "cpp",
         "vector": "cpp"
-    }
+    },
+    "typescript.locale": "en"
 }

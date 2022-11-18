@@ -45,26 +45,26 @@ Airport::Airport(std::string airport) {
     }
 }
 
-int Airport::getID() {
+int Airport::getID() const {
     return id_;
 }
 
-std::string Airport::getName() {
+std::string Airport::getName() const {
     return name_;
 }
 
-std::string Airport::getCity() {
+std::string Airport::getCity() const {
     return city_;
 }   
 
-std::string Airport::getCountry() {
+std::string Airport::getCountry() const {
     return country_;
 }
 
-double Airport::getLatitude() {
+double Airport::getLatitude() const {
     return latitude_;
 }
 
-double Airport::getLongitude() {
+double Airport::getLongitude() const {
     return longitude_;
 }

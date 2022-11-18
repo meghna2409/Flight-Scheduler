@@ -41,37 +41,37 @@ class Airport {
          * Gets the id of the airport.
          * @return id of the airport.
          */
-        int getID();
+        int getID() const;
 
         /**
          * Gets the name of the airport.
          * @return name of the airport.
          */
-        std::string getName();
+        std::string getName() const;
 
         /**
          * Gets the city of the airport.
          * @return city of the airport.
          */
-        std::string getCity();
+        std::string getCity() const;
 
         /**
          * Gets the country of the airport.
          * @return country of the airport.
          */
-        std::string getCountry();
+        std::string getCountry() const;
 
         /**
          * Gets the latitude of the airport.
          * @return latitude of the airport.
          */
-        double getLatitude();
+        double getLatitude() const;
 
         /**
          * Gets the longitude of the airport.
          * @return longitude of the airport.
          */
-        double getLongitude();
+        double getLongitude() const;
 
     private:
         int id_;                    /*< Id of the airport */
