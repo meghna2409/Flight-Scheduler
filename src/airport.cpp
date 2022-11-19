@@ -31,17 +31,17 @@ Airport::Airport(std::string airport) {
         result.push_back(substr);
     }
     // add checks to make sure airport is valid?
-    id_ = std::stoi(result[0]);
     name_ = result[1];
     city_ = result[2];
     country_ = result[3];
     // What should we do when lat/long is invalid?
     // How will we be able to calculate the distance?
     try {
+        id_ = std::stoi(result[0]);
         latitude_ = std::stoi(result[6]);
         longitude_ = std::stoi(result[7]);
     } catch(...) {
-        cout << "invalid latitude or longitude" << endl;
+        cout << "invalid input" << endl;
     }
 }
 
