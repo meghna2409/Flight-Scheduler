@@ -4,6 +4,8 @@
 # include "route.h"
 # include <unordered_map>
 # include <unordered_set>
+# include <map>
+# include <utility>
 
 using namespace std;
 class Graph {
@@ -53,7 +55,24 @@ class Graph {
          */
         std::unordered_map< int, Airport > getVertices();
 
+        /**
+         * Gets all the airports connected to the passed airport.
+         * 
+         * @param airport the airport to get connected airports from.
+         * @return vector of airports conneted to airport.
+         */
+        vector<Airport> getComponent(Airport airport);
+
     private:
+        /**
+         * Private helper recursive DFS for getComponent
+         * 
+         * @param airport the airport to get connected airports from.
+         * @param visited the airport ids that have been visited.
+         * @param connected the airports connected to the passed in airport.
+         */
+        void DFS(Airport & airport, map< int, bool > & visited, vector< Airport > & connected);
+
         std::unordered_map< int, Airport > vertices;                /*< Vertices of the graph */
         std::unordered_map< int, unordered_map<int, Route> > graph;        /*< Adjacency list of the graph */
 };

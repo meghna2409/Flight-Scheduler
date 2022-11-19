@@ -68,7 +68,7 @@ void Graph::addEdges(std::string & routes) {
                 double distance = rad * c;
 
                 Route route(sourceAirportID, destAirportID, distance, "");
-                graph[sourceAirportID].insert(std::pair(destAirportID, route));
+                graph[sourceAirportID].insert(std::pair<int, Route>(destAirportID, route));
             } catch (...) {
                 cout << "invalid id" << endl;
             }
@@ -78,4 +78,24 @@ void Graph::addEdges(std::string & routes) {
 
 std::unordered_map< int, Airport > Graph::getVertices() {
     return vertices;
+}
+
+vector<Airport> Graph::getComponent(Airport airport) {
+    vector< Airport > connected;
+    map< int, bool > visited;
+    DFS(airport, visited, connected);
+    return connected;
+}
+
+void Graph::DFS(Airport & airport, map< int, bool > & visited, vector< Airport > & connected) {
+    connected.push_back(airport);
+
+    int id = airport.getID();
+    visited[id] = true;
+
+    unordered_map<int, Route>::iterator it;
+    for (it = graph[id].begin(); it != graph[id].end(); ++it) {
+        if (!visited[it->first])
+            DFS(vertices[id], visited, connected);
+    }
 }
