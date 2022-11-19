@@ -1,5 +1,7 @@
 # include "graph.h"
 
+#include <cmath>
+
 Graph::Graph(std::string & airports, std::string & routes) {
     addVertices(airports);
     addEdges(routes);
@@ -43,7 +45,29 @@ void Graph::addEdges(std::string & routes) {
                 // Put in directed graph. Source -> Destination
                 // Check if invalid?
                 unordered_map< int, unordered_map<int, Route> >::iterator it = graph.find(sourceAirportID);
-                Route route(sourceAirportID, destAirportID, -1, "");
+
+                Airport source = vertices.at(sourceAirportID);
+                Airport dest = vertices.at(destAirportID);
+                double lat1 = source.getLatitude();
+                double lat2 = dest.getLatitude();
+                double lon1 = source.getLongitude();
+                double lon2 = dest.getLongitude();
+
+                double dLat = (lat2 - lat1) * M_PI / 180.0;
+                double dLon = (lon2 - lon1) * M_PI / 180.0;
+        
+                // convert to radians
+                lat1 = (lat1) * M_PI / 180.0;
+                lat2 = (lat2) * M_PI / 180.0;
+        
+                // apply formulae
+                double a = pow(sin(dLat / 2), 2) + pow(sin(dLon / 2), 2) *
+                        cos(lat1) * cos(lat2);
+                double rad = 6371;
+                double c = 2 * asin(sqrt(a));
+                double distance = rad * c;
+
+                Route route(sourceAirportID, destAirportID, distance, "");
                 graph[sourceAirportID].insert(std::pair(destAirportID, route));
             } catch (...) {
                 cout << "invalid id" << endl;
