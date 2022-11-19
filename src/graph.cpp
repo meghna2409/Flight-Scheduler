@@ -42,8 +42,9 @@ void Graph::addEdges(std::string & routes) {
                 int destAirportID = std::stoi(result[5]);
                 // Put in directed graph. Source -> Destination
                 // Check if invalid?
-                unordered_map< int, unordered_set<int> >::iterator it = graph.find(sourceAirportID);
-                graph[sourceAirportID].insert(destAirportID);
+                unordered_map< int, unordered_map<int, Route> >::iterator it = graph.find(sourceAirportID);
+                Route route(sourceAirportID, destAirportID, -1, "");
+                graph[sourceAirportID].insert(std::pair(destAirportID, route));
             } catch (...) {
                 cout << "invalid id" << endl;
             }

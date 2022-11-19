@@ -1,6 +1,7 @@
 # pragma once
 
 # include "airport.h"
+# include "route.h"
 # include <unordered_map>
 # include <unordered_set>
 
@@ -54,5 +55,5 @@ class Graph {
 
     private:
         std::unordered_map< int, Airport > vertices;                /*< Vertices of the graph */
-        std::unordered_map< int, unordered_set<int> > graph;        /*< Adjacency list of the graph */
+        std::unordered_map< int, unordered_map<int, Route> > graph;        /*< Adjacency list of the graph */
 };
