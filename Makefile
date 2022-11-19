@@ -1,11 +1,14 @@
 CC = g++
 CFLAGS = -g -w -Wall
 
-main: main.o graph.o airport.o
-	$(CC) $(CFLAGS) -o main main.o graph.o airport.o
+main: main.o graph.o airport.o route.o
+	$(CC) $(CFLAGS) -o main main.o graph.o airport.o route.o
 
 graph.o: src/graph.cpp
 	$(CC) $(CFLAGS) -c src/graph.cpp
+
+route.o: src/route.cpp
+	$(CC) $(CFLAGS) -c src/route.cpp
 
 airport.o: src/airport.cpp
 	$(CC) $(CFLAGS) -c src/airport.cpp
