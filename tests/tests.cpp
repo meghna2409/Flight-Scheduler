@@ -1,5 +1,13 @@
-# include "graph.h"
+#include <iostream>
+#include <vector>
+#include <string>
+#include <unordered_map>
+#include "./src/airport.h"
+#include "./src/graph.h"
+#include "../catch/catch.hpp"
 
-// TEST_CASE("test_airport") {
+using namespace std;
 
-// }
+TEST_CASE("Testing Airport constructor") { 
+    
+}
