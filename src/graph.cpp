@@ -80,6 +80,17 @@ std::unordered_map< int, Airport > Graph::getVertices() {
     return vertices;
 }
 
+void Graph::insertEdge(Route route) {       
+    int source = route.getSourceID();
+    int dest = route.getDestID();
+
+    // Find function returns the key of the desired element or the end iterator if the element is not found
+    // Only inserts when the flight does not exist in the adjacency list of the airport
+    if (vertices[source].connected_airports.find(dest) == vertices[source].connected_airports.end())   
+        (vertices[source].connected_airports)[dest] = route;
+}
+
+
 vector<Airport> Graph::getComponent(Airport airport) {
     vector< Airport > connected;
     map< int, bool > visited;

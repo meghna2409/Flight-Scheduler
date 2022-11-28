@@ -8,8 +8,7 @@
 class Route
 {
   public:
-    int sourceID; /**< The source of the route **/
-    int destID; /**< The destination of the route **/
+    
 
     /**
      * Parameter constructor for weighted graphs.
@@ -57,6 +56,13 @@ class Route
         return this->weight;
     }
 
+    int getSourceID() const {
+        return sourceID;
+    }
+
+    int getDestID() const {
+        return destID;
+    }
     /**
      * Compares two routes' source and dest.
      * @param other - the route to compare with
@@ -72,5 +78,7 @@ class Route
 private:
     std::string label; /**< The route label **/
     int weight; /**< The route weight (if in a weighed graph) **/
+    int sourceID; /**< The source of the route **/
+    int destID; /**< The destination of the route **/
 
 };

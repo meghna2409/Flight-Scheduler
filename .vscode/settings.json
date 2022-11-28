@@ -65,7 +65,19 @@
         "unordered_map": "cpp",
         "unordered_set": "cpp",
         "utility": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "__bits": "cpp",
+        "__tree": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "future": "cpp",
+        "map": "cpp",
+        "numeric": "cpp",
+        "random": "cpp",
+        "regex": "cpp",
+        "set": "cpp",
+        "thread": "cpp",
+        "variant": "cpp"
     },
     "typescript.locale": "en"
 }

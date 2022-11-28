@@ -62,6 +62,7 @@ class Graph {
          * @return vector of airports conneted to airport.
          */
         vector<Airport> getComponent(Airport airport);
+        void insertEdge(Route route);
 
     private:
         /**

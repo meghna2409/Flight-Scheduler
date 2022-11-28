@@ -1,49 +1,91 @@
 #include "dijkstra.h"
+#include <map>
+#include <climits>
+#include <stack>
+
 using namespace std;
 
+Djikstra::Djikstra(Graph graph, string departure_airport, string arrival_airport) {
+    path_vertices.clear();
+    vector<string> airports;  
+    unordered_map<int, Airport> map = graph.getVertices();
 
-Airport Dijkstra::findMinDistance(unordered_map<string, int> distance, unordered_map<string, bool> visited, int num, vector<Airport> vertices) { 
-    int min = INT_MAX;
-    int index; 
-    for (int i = 0; i < num; i++) 
-        if (visited[vertices[i]] == false && distance[vertices[i]] <= min)  {
-            min = distance[vertices[i]];
-            index = i; 
+    for (auto it = map.begin(); it != map.end(); ++it) {
+        airports.push_back(it->second.getName());
+        passed_airports.insert(make_pair(it->second.getName(), ""));
+        visited.insert(make_pair(it->second.getName(), false));
+        if (it->second.getName() == departure_airport) distances.insert(make_pair(it->second.getName(), 0.0));
+        else distances.insert(make_pair(it->second.getName(), INT_MAX));
+    }
+
+    queue.push(make_pair(0.0, departure_airport));
+    for (auto it = map.begin(); it != map.end(); ++it) {
+        adjacency_list.insert(make_pair(it->second.getName(), it->second.connected_airports));
+    }
+
+    while(queue.top().second != arrival_airport) {
+        pair<double, string> current = queue.top();
+        queue.pop();
+        vector<pair<int , double>> neighbors = getAdjacent(current.second);
+        vector<pair<string, double>> names;
+        for (auto n : neighbors) {
+            for (auto it = map.begin(); it != map.end(); ++it) {
+                if (n.first == it->first) {
+                    names.push_back(make_pair(it->second.getName(), n.second));
+                }
+            }
         }
-    return vertices[index]; 
-} 
 
-vector<string> Dijkstra::recurse(unordered_map<string, string> parent, Airport airport, vector<Airport> fill_path) { 
-    if (parent[airport] == "-1") return fill_path;
-    fill_path.push_back(airport);
-    return recurse(parent, parent[airport], fill_path); 
-} 
+        for (auto m : names) {
+            if (visited[m.first] == false && visited[current.second] == false) {
+                if (m.second + distances[current.second] < distances[m.first]) {
+                    distances[m.first] = m.second + distances[current.second];
+                    passed_airports[m.first] = current.second;
+                    queue.push(make_pair(distances[m.first], m.first)); 
+                }
+            }
+        }
 
-vector<string> Dijkstra::dijkstra(Graph graph, Airport departure, Airport arrival) {
-	unordered_map<string, int> distances;
-	unordered_map<string, bool> visited;
-	unordered_map<string, string> parent;
-    vector<string> fill_path;
-	parent[departure] = "-1";
-	vector<Airport> vertices = graph.getVertices();
-
-    for (int i = 0; i < vertices.size(); i++) { 
-        distances[vertices[i]] = INT_MAX; 
-        visited[vertices[i]] = false; 
+        visited[current.second] = true;
     }
-    int num = vertices.size();
-    distances[departure] = 0; 
-    for (int j = 0; j < num - 1; j++) {  
-        Airport a = findMinDistance(distances, visited, num, vertices); 
-        visited[a] = true;  
-        // for (int k = 0; k < num; k++) {
-        //     if (!visited[vertices[k]] && graph.edgeExists(k, vertices[k])) {
-        //         if (distances[a] + graph.getWeight(k, vertices[k]) < distances[vertices[k]]) {
-        //             parent[vertices[k]] = a; 
-        //             distances[vertices[k]] = distances[k] + graph.getWeight(k, vertices[k]); 
-        //         }
-        //     }
-        // }   
+ 
+    path = distances[arrival_airport];
+
+    string key = arrival_airport;
+    path_vertices.push_back(arrival_airport);
+    while(key != departure_airport) {
+        path_vertices.push_back(passed_airports[key]);
+        key = passed_airports[key];
     }
-    // return print(distances, num, parent, vertices, departure, arrival, fill_path); 
-} 
+    std::reverse(path_vertices.begin(), path_vertices.end());
+}
+
+bool Djikstra::vertexExists(string node) {
+    if (adjacency_list.find(node) == adjacency_list.end()) {
+        return false;
+    }
+    return true;
+}
+
+double Djikstra::getShortestDistance() const {
+  return path;
+}
+
+vector<string> Djikstra::getPathVertices() const {
+  return path_vertices;
+}
+
+vector<pair<int, double>> Djikstra::getAdjacent(string source) {
+    auto find = adjacency_list.find(source);
+    vector<string> result;
+
+    if (find == adjacency_list.end()) return vector<pair<int,double>>();
+    else {
+        vector<pair<int,double>> vertex_list;
+        unordered_map<int, Route> &map = adjacency_list.at(source);
+        for (auto it = map.begin(); it != map.end(); it++) {
+            vertex_list.push_back(make_pair(it->first, it->second.getWeight()));
+        }
+        return vertex_list;
+    }
+}
