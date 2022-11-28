@@ -8,8 +8,7 @@
 class Route
 {
   public:
-    Airport source; /**< The source of the route **/
-    Airport dest; /**< The destination of the route **/
+    
 
     /**
      * Parameter constructor for weighted graphs.
@@ -18,15 +17,15 @@ class Route
      * @param w - the weight of the route
      * @param lbl - the route label
      */
-    Route(Airport u, Airport v, int w, std::string lbl)
-        : source(u), dest(v), label(lbl), weight(w)
+    Route(int u, int v, int w, std::string lbl)
+        : sourceID(u), destID(v), label(lbl), weight(w)
     { /* nothing */
     }
 
     /**
      * Default constructor.
      */
-    Route() : source(""), dest(""), label(""), weight(-1)
+    Route() : sourceID(-1), destID(-1), label(""), weight(-1)
     { /* nothing */
     }
 
@@ -57,20 +56,29 @@ class Route
         return this->weight;
     }
 
+    int getSourceID() const {
+        return sourceID;
+    }
+
+    int getDestID() const {
+        return destID;
+    }
     /**
      * Compares two routes' source and dest.
      * @param other - the route to compare with
      */
     bool operator==(Route& other) const
     {
-        if (this->source.getID() != other.source.getID())
+        if (this->sourceID != other.sourceID)
             return false;
-        if (this->dest.getID() != other.dest.getID())
+        if (this->destID != other.destID)
             return false;
         return true;
     }
 private:
     std::string label; /**< The route label **/
     int weight; /**< The route weight (if in a weighed graph) **/
+    int sourceID; /**< The source of the route **/
+    int destID; /**< The destination of the route **/
 
 };

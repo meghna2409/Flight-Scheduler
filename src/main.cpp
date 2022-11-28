@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-int main(){
+int main() {
     // Testing branches
 
     std::string airportFile = "airports.dat";
