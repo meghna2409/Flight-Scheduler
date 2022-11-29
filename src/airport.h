@@ -7,6 +7,7 @@
 # include <sstream>
 # include "route.h"
 # include "graph.h"
+# include <unordered_map>
 
 using namespace std;
 class Airport {
@@ -75,7 +76,6 @@ class Airport {
          */
         double getLongitude() const;
         unordered_map<int, Route> connected_airports;
-
     private:
         int id_;                    /*< Id of the airport */
         std::string name_;          /*< Name of the airport */
