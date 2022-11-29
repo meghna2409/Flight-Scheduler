@@ -1,0 +1,6 @@
+final_project-build/
+build/
+test
+.obj
+*.o
+*.d

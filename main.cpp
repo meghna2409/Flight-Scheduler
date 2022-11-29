@@ -1,9 +1,8 @@
-#include "graph.h"
-# include "airport.h"
-
+#include "./src/graph.h"
+#include "./src/route.h"
+#include "./src/airport.h"
 # include <unordered_map>
 # include <utility>
-
 #include <iostream>
 
 int main() {

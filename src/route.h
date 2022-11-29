@@ -5,11 +5,9 @@
 #include <string>
 #include <limits.h>
 
-class Route
-{
+using namespace std;
+class Route {
   public:
-    
-
     /**
      * Parameter constructor for weighted graphs.
      * @param u - one airport the route is connected to
@@ -17,17 +15,11 @@ class Route
      * @param w - the weight of the route
      * @param lbl - the route label
      */
-    Route(int u, int v, int w, std::string lbl)
-        : sourceID(u), destID(v), label(lbl), weight(w)
-    { /* nothing */
-    }
-
+    Route(int u, int v, int w, std::string lbl);
     /**
      * Default constructor.
      */
-    Route() : sourceID(-1), destID(-1), label(""), weight(-1)
-    { /* nothing */
-    }
+    Route();
 
     /**
      * Compares two Routes.
@@ -43,7 +35,7 @@ class Route
     /**
      * Gets route label.
      */
-    string getLabel() const
+    std::string getLabel() const
     {
         return this->label;
     }
