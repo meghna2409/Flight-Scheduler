@@ -7,7 +7,6 @@
 
 int main() {
     // Testing branches
-
     std::string airportFile = "../data/airports.dat";
     std::string routesFile = "../data/routes.dat";
     Graph g(airportFile, routesFile);
@@ -26,9 +25,9 @@ int main() {
     Graph graph(test_graph_airports, test_graph_routes);
 
     std::unordered_map< int, Airport > vertices = graph.getVertices();
-    for (std::pair<int, Airport> pair : vertices) {
-        std::cout << "Index: " << pair.first << "; Airport: "
-        << pair.second.getName() << std::endl;
+    for (auto it = vertices.begin(); it != vertices.end(); ++it) {
+        std::cout << "Index: " << it->first << "; Airport: "
+        << it->second.getName() << std::endl;
     }
 
 
