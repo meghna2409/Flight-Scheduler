@@ -1,4 +1,6 @@
-#include "graph.h"
+#include "./src/graph.h"
+#include "./src/route.h"
+#include "./src/airport.h"
 
 #include <iostream>
 
