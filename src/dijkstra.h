@@ -1,7 +1,7 @@
 #pragma once
-#include "airport.h"
-#include "graph.h"
-#include "route.h"
+#include "Airport.h"
+#include "Graph.h"
+#include "Route.h"
 
 #include <map>
 #include <queue>
@@ -12,9 +12,9 @@
 
 using namespace std;
 
-class Djikstra {
+class Dijkstra {
     public:
-        Djikstra(Graph graph, string departure_airport, string arrival_airport);
+        Dijkstra(Graph graph, string departure_airport, string arrival_airport);
         double getShortestDistance() const;
         vector<string> getPathVertices() const;
         vector<pair<int, double>> getAdjacent(string departure_airport);

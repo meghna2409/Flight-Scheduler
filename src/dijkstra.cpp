@@ -1,11 +1,11 @@
-#include "dijkstra.h"
+#include "Dijkstra.h"
 #include <map>
 #include <climits>
 #include <stack>
 
 using namespace std;
 
-Djikstra::Djikstra(Graph graph, string departure_airport, string arrival_airport) {
+Dijkstra::Dijkstra(Graph graph, string departure_airport, string arrival_airport) {
     path_vertices.clear();
     vector<string> airports;  
     unordered_map<int, Airport> map = graph.getVertices();
@@ -60,22 +60,22 @@ Djikstra::Djikstra(Graph graph, string departure_airport, string arrival_airport
     std::reverse(path_vertices.begin(), path_vertices.end());
 }
 
-bool Djikstra::vertexExists(string node) {
+bool Dijkstra::vertexExists(string node) {
     if (adjacency_list.find(node) == adjacency_list.end()) {
         return false;
     }
     return true;
 }
 
-double Djikstra::getShortestDistance() const {
+double Dijkstra::getShortestDistance() const {
   return path;
 }
 
-vector<string> Djikstra::getPathVertices() const {
+vector<string> Dijkstra::getPathVertices() const {
   return path_vertices;
 }
 
-vector<pair<int, double>> Djikstra::getAdjacent(string source) {
+vector<pair<int, double>> Dijkstra::getAdjacent(string source) {
     auto find = adjacency_list.find(source);
     vector<string> result;
 

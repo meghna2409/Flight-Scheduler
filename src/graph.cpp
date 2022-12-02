@@ -1,6 +1,6 @@
-# include "graph.h"
+# include "Graph.h"
 
-#include <cmath>
+# include <cmath>
 
 Graph::Graph(std::string & airports, std::string & routes) {
     addVertices(airports);
