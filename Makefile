@@ -1,5 +1,5 @@
 EXENAME = final
-OBJS = main.o PNG.o HSLAPixel.o lodepng.o parse.o flights.o dijkstra.o
+OBJS = main.o PNG.o HSLAPixel.o lodepng.o parse.o flights.o dijkstra.o pagerank.o
 
 CXX = clang++
 CXXFLAGS = $(CS225) -std=c++1y -stdlib=libc++ -c -g -O0 -Wall -Wextra -pedantic
@@ -30,7 +30,7 @@ output_msg: ; $(CLANG_VERSION_MSG)
 $(EXENAME): output_msg $(OBJS)
 	$(LD) $(OBJS) $(LDFLAGS) -o $(EXENAME)
 
-main.o: src/main.cpp src/flights.cpp src/parse.cpp src/dijkstra.cpp
+main.o: src/main.cpp src/flights.cpp src/parse.cpp src/dijkstra.cpp src/pagerank.cpp
 	$(CXX) $(CXXFLAGS) src/main.cpp
 
 dijkstra.o: src/dijkstra.cpp
@@ -41,6 +41,9 @@ flights.o: src/flights.cpp
 
 parse.o: src/parse.cpp
 	$(CXX) $(CXXFLAGS) src/parse.cpp
+
+pagerank.o: src/pagerank.cpp
+	$(CXX) $(CXXFLAGS) src/pagerank.cpp
 
 PNG.o : src/cs225/PNG.cpp src/cs225/PNG.h src/cs225/HSLAPixel.h src/cs225/lodepng/lodepng.h
 	$(CXX) $(CXXFLAGS) src/cs225/PNG.cpp
@@ -53,7 +56,7 @@ lodepng.o : src/cs225/lodepng/lodepng.cpp src/cs225/lodepng/lodepng.h
 
 
 
-tests: output_msg dijkstra.o PNG.o HSLAPixel.o lodepng.o src/catch/catchmain.cpp src/tests/tests.cpp src/flights.cpp src/parse.cpp
+tests: output_msg dijkstra.o PNG.o HSLAPixel.o lodepng.o src/catch/catchmain.cpp src/tests/tests.cpp src/flights.cpp src/parse.cpp 
 	$(LD) dijkstra.o PNG.o HSLAPixel.o lodepng.o src/catch/catchmain.cpp src/tests/tests.cpp src/flights.cpp src/parse.cpp $(LDFLAGS) -o tests
 
 clean:
