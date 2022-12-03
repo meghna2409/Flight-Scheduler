@@ -30,31 +30,31 @@ output_msg: ; $(CLANG_VERSION_MSG)
 $(EXENAME): output_msg $(OBJS)
 	$(LD) $(OBJS) $(LDFLAGS) -o $(EXENAME)
 
-main.o: classes/main.cpp classes/flights.cpp classes/parse.cpp classes/dijkstra.cpp
-	$(CXX) $(CXXFLAGS) classes/main.cpp
+main.o: src/main.cpp src/flights.cpp src/parse.cpp src/dijkstra.cpp
+	$(CXX) $(CXXFLAGS) src/main.cpp
 
-dijkstra.o: classes/dijkstra.cpp
-	$(CXX) $(CXXFLAGS) classes/dijkstra.cpp
+dijkstra.o: src/dijkstra.cpp
+	$(CXX) $(CXXFLAGS) src/dijkstra.cpp
 
-flights.o: classes/flights.cpp
-	$(CXX) $(CXXFLAGS) classes/flights.cpp
+flights.o: src/flights.cpp
+	$(CXX) $(CXXFLAGS) src/flights.cpp
 
-parse.o: classes/parse.cpp
-	$(CXX) $(CXXFLAGS) classes/parse.cpp
+parse.o: src/parse.cpp
+	$(CXX) $(CXXFLAGS) src/parse.cpp
 
-PNG.o : classes/cs225/PNG.cpp classes/cs225/PNG.h classes/cs225/HSLAPixel.h classes/cs225/lodepng/lodepng.h
-	$(CXX) $(CXXFLAGS) classes/cs225/PNG.cpp
+PNG.o : src/cs225/PNG.cpp src/cs225/PNG.h src/cs225/HSLAPixel.h src/cs225/lodepng/lodepng.h
+	$(CXX) $(CXXFLAGS) src/cs225/PNG.cpp
 
-HSLAPixel.o : classes/cs225/HSLAPixel.cpp classes/cs225/HSLAPixel.h
-	$(CXX) $(CXXFLAGS) classes/cs225/HSLAPixel.cpp
+HSLAPixel.o : src/cs225/HSLAPixel.cpp src/cs225/HSLAPixel.h
+	$(CXX) $(CXXFLAGS) src/cs225/HSLAPixel.cpp
 
-lodepng.o : classes/cs225/lodepng/lodepng.cpp classes/cs225/lodepng/lodepng.h
-	$(CXX) $(CXXFLAGS) classes/cs225/lodepng/lodepng.cpp
+lodepng.o : src/cs225/lodepng/lodepng.cpp src/cs225/lodepng/lodepng.h
+	$(CXX) $(CXXFLAGS) src/cs225/lodepng/lodepng.cpp
 
 
 
-tests: output_msg dijkstra.o PNG.o HSLAPixel.o lodepng.o classes/catch/catchmain.cpp classes/tests/tests.cpp classes/flights.cpp classes/parse.cpp
-	$(LD) dijkstra.o PNG.o HSLAPixel.o lodepng.o classes/catch/catchmain.cpp classes/tests/tests.cpp classes/flights.cpp classes/parse.cpp $(LDFLAGS) -o tests
+tests: output_msg dijkstra.o PNG.o HSLAPixel.o lodepng.o src/catch/catchmain.cpp src/tests/tests.cpp src/flights.cpp src/parse.cpp
+	$(LD) dijkstra.o PNG.o HSLAPixel.o lodepng.o src/catch/catchmain.cpp src/tests/tests.cpp src/flights.cpp src/parse.cpp $(LDFLAGS) -o tests
 
 clean:
 	-rm -f *.o $(EXENAME) tests
