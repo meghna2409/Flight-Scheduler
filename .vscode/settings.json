@@ -71,7 +71,16 @@
         "__tree": "cpp",
         "forward_list": "cpp",
         "list": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "__bits": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "future": "cpp",
+        "numeric": "cpp",
+        "random": "cpp",
+        "regex": "cpp",
+        "thread": "cpp",
+        "variant": "cpp"
     },
     "typescript.locale": "en"
 }

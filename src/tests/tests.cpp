@@ -5,6 +5,7 @@
 #include "../catch/catch.hpp"
 #include "../flights.h"
 #include "../dijkstra.h"
+#include "../pagerank.h"
 
 TEST_CASE("Route construction") {
     Route route("ORD", "DXB");
@@ -123,7 +124,6 @@ TEST_CASE("Checking edgeExists") {
 TEST_CASE("Checking getEdgeWeight") {
     Parse parse;
     Flights* flight = new Flights();
-
     Route route_one("DXB", "BOM");
     Route route_two("DEL", "COK"); 
     Route route_three("JFK", "LAX");
@@ -207,4 +207,66 @@ TEST_CASE("Dijkstra test 3") {
     test.push_back("IST");
     test.push_back("AGP");
     REQUIRE(test == route);
+}
+
+	
+TEST_CASE("Testing Pagerank function top airports") { 
+    PageRank *test = new PageRank(); 
+    test->list.resize(5);
+    test->result.resize(5);
+
+    test->list[0] = 0;
+    test->list[1] = 1;
+    test->list[2] = 2;
+    test->list[3] = 3;
+    test->list[4] = 4;
+
+    test->result[0] = 0.245;
+    test->result[1] = 324.15;
+    test->result[2] = 23.21;
+    test->result[3] = 56.33;
+    test->result[4] = 4;
+
+    vector<int> rank = test->pick_airport(3); 
+    REQUIRE(1 == rank[0]);
+    REQUIRE(3 == rank[1]);
+    REQUIRE(2 == rank[2]);
+}
+
+TEST_CASE("Testing Pagerank function adjacency") {
+    PageRank *test = new PageRank();
+    int size = 2;
+    test->adjacency_vector.resize(size,vector<double>(size));
+    test->adjacency_vector[0][0] = 0.0;
+    test->adjacency_vector[1][0] = 0.0;
+    test->adjacency_vector[0][1] = 4.0;   
+    test->adjacency_vector[1][1] = 6.0;  
+    test->list.resize(size);
+    test->num = size;
+
+    test->PageRank::adjacency(size, 0.85);
+    REQUIRE(0.5 == test->adjacency_vector[0][0]);
+    REQUIRE(0.5 == test->adjacency_vector[1][0]);
+    REQUIRE(1 == test->adjacency_vector[0][1] + test->adjacency_vector[1][1]);
+}
+
+
+TEST_CASE("Testing Pagerank function pr()") { 
+    PageRank *test = new PageRank();
+    int size = 10;
+    test->adjacency_vector.resize(size,vector<double>(size));
+    test->list.resize(size);
+    test->num = size;
+    for (int i = 0; i < size; i++) {
+        test->list[i] = i;
+        for (int j = 0; j < size; j++) {
+            test->adjacency_vector[i][j] = 0.0;
+        }        
+    }
+    test->adjacency_vector[0][1] = 10;
+    test->PageRank::adjacency(size, 0.85);
+    vector<double> initial = test->PageRank::vec();
+    vector<double> temp = test->PageRank::pr(initial, 50, true);
+    vector<int> rank = test->pick_airport(1); 
+    REQUIRE(0 == rank[0]);
 }

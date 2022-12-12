@@ -73,10 +73,10 @@ vector<int> PageRank::pick_airport(int num){
     }
 
     pos = 0;
-    for(int i = 0; i < num; i++){
+    for (int i = 0; i < num; i++){
         int count = 0;
-        for(auto it = result.begin(); it != result.end(); ++it){
-            if(biggest[i] == *it){
+        for (auto it = result.begin(); it != result.end(); ++it){
+            if (biggest[i] == *it){
                 airport[pos] = (list[count]);
                 pos++;
             }
