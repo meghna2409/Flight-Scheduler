@@ -6,15 +6,20 @@ The objective of this project is to analyze common flight routes and the evoluti
 
 ## Dijkstra's
 #### Files: dijkstra.h/cpp
+Dijkstra's algorithm is used to determine the distance between relative nodes by selecting and starting and ending point and using the latitude and longitude coordinates to calculate the distance between them. This algorithm returns a vector of vertices representing the shortest path between any two airports. The complexity for time would be O((|V| + |E|) log V), and for space, it would be O(|V| + |E|).
 
 ## Pagerank
 #### Files: pagerank.h/cpp
+The PageRank algorithm is used to locate the msot significant airports and map them. The input is an adjacency list representing the directed graph, and the algorithm returns a vector where each value denotes the importance of each airport. The complexity for time would be O(k(V+E)), and for space, it would be O(V).
 
 ## Graph
 #### Files: graph.h/cpp
 
 ## Parse
 #### Files: parse.h/cpp
+
+## Flights
+#### Files: flights.h/cpp
 
 ## Installation Instructions
 Run Tests
