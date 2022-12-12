@@ -12,6 +12,8 @@
 #include <unordered_map>
 #include "edge.h"
 #include "random.h"
+#include "fstream"
+#include "routes.h"
 
 using namespace std;
 

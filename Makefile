@@ -56,8 +56,8 @@ lodepng.o : src/cs225/lodepng/lodepng.cpp src/cs225/lodepng/lodepng.h
 
 
 
-tests: output_msg dijkstra.o PNG.o HSLAPixel.o lodepng.o src/catch/catchmain.cpp src/tests/tests.cpp src/flights.cpp src/parse.cpp 
-	$(LD) dijkstra.o PNG.o HSLAPixel.o lodepng.o src/catch/catchmain.cpp src/tests/tests.cpp src/flights.cpp src/parse.cpp $(LDFLAGS) -o tests
+tests: output_msg dijkstra.o PNG.o HSLAPixel.o lodepng.o src/catch/catchmain.cpp src/tests/tests.cpp src/flights.cpp src/parse.cpp src/pagerank.cpp
+	$(LD) dijkstra.o PNG.o HSLAPixel.o lodepng.o src/catch/catchmain.cpp src/tests/tests.cpp src/flights.cpp src/parse.cpp src/pagerank.cpp $(LDFLAGS) -o tests
 
 clean:
 	-rm -f *.o $(EXENAME) tests
