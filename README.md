@@ -2,6 +2,7 @@
 Group Members: Meghna, Lysa, Anna
 
 CS 225 Final Project Presentation Video: https://youtu.be/BoUfP1WeuDc.
+
 CS 225 Final Project Presentation Slides: https://docs.google.com/presentation/d/1M_Xi1b1_7m6F_GsSpbC5NF6ERCjD9DdajQCsibCGojU/edit?usp=sharing
 
 ## Overview
