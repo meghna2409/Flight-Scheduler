@@ -15,7 +15,7 @@ int main() {
     std::string userSource;
     std::string userDestination;
 
-    std::cout<< "\n Welcome! Let's find the shortest flight! \n" <<endl;
+    std::cout<< "\nHello! Let's find the shortest flight! \n" <<endl;
     int counter = 0;
     bool proper_response = false;
    //will repeat until proper responses were given
