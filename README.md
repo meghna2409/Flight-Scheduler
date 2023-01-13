@@ -1,9 +1,8 @@
-# cs225_finalproject
-Group Members: Meghna, Lysa, Anna
+# flight-scheduler
+Team Members: Meghna, Lysa, Anna
 
-CS 225 Final Project Presentation Video: https://youtu.be/BoUfP1WeuDc
-
-CS 225 Final Project Presentation Slides: https://docs.google.com/presentation/d/1M_Xi1b1_7m6F_GsSpbC5NF6ERCjD9DdajQCsibCGojU/edit?usp=sharing
+Presentation Video: https://youtu.be/BoUfP1WeuDc
+Presentation Slides: https://docs.google.com/presentation/d/1M_Xi1b1_7m6F_GsSpbC5NF6ERCjD9DdajQCsibCGojU/edit?usp=sharing
 
 ## Overview
 The objective of this project is to analyze common flight routes and the evolution of these routes in the past eight years. To accomplish this we will be using the [OpenFlights dataset](https://openflights.org/data.html), which has access to flight routes and airports dated from 2014. We used the information from the dataset to compute the distance and find the shortest path between any two cities by using DGS and Dijkstra's algorithm. We also used the PageRank method to locate the most significant airports and map them.
